@@ -1,0 +1,26 @@
+name: CI - Cypress API
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Use Node 20
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install deps
+        run: npm ci || npm i
+
+      - name: Run Cypress (headless)
+        run: npx cypress run
+        env:
+          NO_PROXY: jsonplaceholder.typicode.com,.jsonplaceholder.typicode.com,localhost,127.0.0.1
