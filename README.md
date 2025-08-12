@@ -29,11 +29,12 @@ Copy
 Edit
 
 ## ▶️ Como rodar local
-```bash
+
 npm install
 npm run cy:open   # modo interativo
 npm test          # headless
 baseUrl definido em cypress.config.js para http://jsonplaceholder.typicode.com.
+
 
 ✅ Escopo dos testes
 /users
