@@ -1,3 +1,4 @@
+
 # Automação de API com Cypress – JSONPlaceholder
 
 Projeto prático de **automação de testes de API REST** usando **Cypress** contra a API pública **JSONPlaceholder**.
@@ -16,51 +17,50 @@ Projeto prático de **automação de testes de API REST** usando **Cypress** con
 - GitHub Actions
 
 ## 🗂 Estrutura
+```
+
 cypress/
 e2e/
-posts.cy.js # CRUD /posts
-users.cy.js # Listagem /users
+posts.cy.js      # CRUD /posts
+users.cy.js      # Listagem /users
 cypress.config.js
 package.json
 .github/workflows/main.yml
 
-arduino
-Copy
-Edit
+````
 
 ## ▶️ Como rodar local
-
+```bash
 npm install
 npm run cy:open   # modo interativo
 npm test          # headless
-baseUrl definido em cypress.config.js para http://jsonplaceholder.typicode.com.
+````
 
+> `baseUrl` definido em `cypress.config.js` para `http://jsonplaceholder.typicode.com`.
 
-✅ Escopo dos testes
-/users
+## ✅ Escopo dos testes
 
-GET /users → 200, array não vazio, chaves esperadas.
+* **/users**
 
-/posts
+  * GET `/users` → 200, array não vazio, chaves esperadas.
+* **/posts**
 
-GET /posts → 200, array não vazio
+  * GET `/posts` → 200, array não vazio
+  * POST `/posts` → 201, retorna payload + `id`
+  * PUT `/posts/1` → 200, retorna payload atualizado
+  * DELETE `/posts/1` → 200 (API simula deleção e retorna body vazio)
 
-POST /posts → 201, retorna payload + id
+## 📈 CI (GitHub Actions)
 
-PUT /posts/1 → 200, retorna payload atualizado
+Pipeline em `.github/workflows/main.yml` executa:
 
-DELETE /posts/1 → 200 (API simula deleção e retorna body vazio)
+* `npm ci || npm i`
+* `npx cypress run`
 
-📈 CI (GitHub Actions)
-Pipeline em .github/workflows/main.yml executa:
+## 🚀 Próximos passos
 
-npm ci || npm i
+* Validar **schemas** com AJV
+* Relatórios (Mochawesome/Allure)
+* Testes de **performance** (k6) nos mesmos fluxos para um “Parte 2”
 
-npx cypress run
-
-🚀 Próximos passos
-Validar schemas com AJV
-
-Relatórios (Mochawesome/Allure)
-
-Testes de performance (k6) nos mesmos fluxos para um “Parte 2”
+```
